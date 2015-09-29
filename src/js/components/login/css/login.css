@@ -5,6 +5,11 @@
     margin: 50px auto;
     border-radius: 4px;
     box-shadow: 1px 1px 1px #A5A5A5;
+
+     -webkit-box-sizing:border-box;
+     -moz-box-sizing: border-box;
+     box-sizing: border-box;
+
 }
 
 .user-login-wrapper input {
@@ -16,3 +21,55 @@
      -moz-box-sizing: border-box;
 	 box-sizing: border-box;
 }
+
+/*
+  animation-name: stretch;
+  animation-duration: 1.5s; 
+  animation-timing-function: ease-out; 
+  animation-delay: 0;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  animation-fill-mode: none;
+  animation-play-state: running; 
+*/
+
+.user-login-wrapper.logged-animation {
+  animation: stretch-to-top 1.5s 1 forwards ease-in-out;
+}
+
+.user-login-wrapper.logged-animation input {
+    animation: input-animation 1s 1 forwards ease-in-out;
+    border: none;
+    background-color: transparent;
+    padding: 0 14px;
+    font-size: 1.1em;
+
+    transition: background 0.2s ease, 
+                padding 0.8s linear, 
+                border 0.8s linear;
+}
+
+@keyframes stretch-to-top {
+  50% {
+    margin-top: 0;
+  }
+  100% {
+    border-radius: 0;
+    width: 100%;
+    margin-top: 0;
+    background-color: #FFF;
+    padding: 10px 20px;
+  }
+}
+
+@keyframes input-animation {
+    40% {
+        text-align: right;
+    }
+    100% {
+        width: inherit;
+        text-align: right;
+        pointer-events: none;
+    }
+}
+

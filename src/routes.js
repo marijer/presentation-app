@@ -10,7 +10,7 @@ var Redirect = Router.Redirect;
 
 var routes = (
 	<Route name='app' path='/' handler={require('./js/components/app')}>
-		<DefaultRoute handler={require('./js/components/login/login')} />
+		<DefaultRoute handler={require('./js/components/overview/overview')} />
 	</Route>	
 );
 
