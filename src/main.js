@@ -1,14 +1,8 @@
 var React = require('react');
 
-var View = React.createClass({
-  render: function(){
-    return (
-      <div>
-        <h1>Example now</h1> 
-      </div>
-    );
-  }
+var Router = require('react-router');
+var routes = require('./routes');
+
+Router.run(routes, function(Handler){
+	React.render(<Handler/>, document.getElementById('app'));
 });
-
-
-React.render(<View />, document.getElementById('app'));

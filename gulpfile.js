@@ -19,7 +19,7 @@ var config = {
 	},
 	paths: {
 		html: './src/*.html',
-		js: './src/**/*.js',
+		js: './src/**/**/*.js',
 		dist: './dist',
 		css: './src/**/*.css',
 		mainJS: './src/main.js',
