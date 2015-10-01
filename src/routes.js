@@ -11,6 +11,7 @@ var Redirect = Router.Redirect;
 var routes = (
 	<Route name='app' path='/' handler={require('./js/components/app')}>
 		<DefaultRoute handler={require('./js/components/overview/overview')} />
+		<NotFoundRoute handler={require('./js/components/notFoundPage')} />
 	</Route>	
 );
 

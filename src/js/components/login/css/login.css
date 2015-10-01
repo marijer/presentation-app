@@ -38,11 +38,11 @@
 }
 
 .user-login-wrapper.logged-animation input {
-    animation: input-animation 1s 1 forwards ease-in-out;
     border: none;
     background-color: transparent;
     padding: 0 14px;
     font-size: 1.1em;
+    pointer-events: none;
 
     transition: background 0.2s ease, 
                 padding 0.8s linear, 
@@ -60,16 +60,5 @@
     background-color: #FFF;
     padding: 10px 20px;
   }
-}
-
-@keyframes input-animation {
-    40% {
-        text-align: right;
-    }
-    100% {
-        width: inherit;
-        text-align: right;
-        pointer-events: none;
-    }
 }
 

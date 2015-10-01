@@ -7,7 +7,7 @@ var App = React.createClass({
 		return (
 			<div> 
 				<Login />
-				<div className="container-fluid">
+				<div className="main-container">
 					<RouteHandler /> 
 				</div>
 			</div>
