@@ -4,6 +4,8 @@ var React = require('react');
 var UserActions = require('../../actions/userActions');
 var UserStore = require('../../stores/userStore');
 
+var LoginForm = require('./loginForm');
+
 var Login = React.createClass({
 	getInitialState: function() {
 		var userName = UserStore.getUser() ? UserStore.getUser().name : undefined,
@@ -11,42 +13,30 @@ var Login = React.createClass({
 			animate = !isValidated ? true : false; 
 
     	return { 
-    		value: userName,
+    		inputValue: userName,
     		isValidated: isValidated,
     		animate: animate
     	 };
  	},
 
 	handleChange: function(event) {
-		this.setState({ value: event.target.value });
+		this.setState({ inputValue: event.target.value });
 	},
 
 	validateForm: function(event) {
 		event.preventDefault();
 		this.setState({ isValidated: true });
 
-		UserActions.login(this.state.value);
+		UserActions.login(this.state.inputValue);
 	},
 
 	render: function() {
-		var classString = "user-login-wrapper";
-		var loginContent = <input type="text" name="username" autoComplete="off" autoCorrect="Off" onChange={this.handleChange} value={this.state.value} placeholder="whats your name?" autoFocus="true" />;
-
-		if (this.state.isValidated) {
-			if (this.state.animate) {
-				classString += " logged-animation";
-			} else {
-				classString += " logged-in";
-			}
-			loginContent= <span className="user-label">{this.state.value}</span>;
-		}
-
 		return (
-			<form onSubmit={this.validateForm}>
-				<div className={classString}>
-					{loginContent}
-				</div>
-			</form>
+			<LoginForm inputValue={this.state.inputValue}
+						validateForm={this.validateForm}
+						handleChange={this.handleChange}
+						isValidated={this.state.isValidated}
+						animate={this.state.animate} />
 		);
 	}
 });
