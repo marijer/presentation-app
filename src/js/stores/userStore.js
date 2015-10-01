@@ -18,15 +18,27 @@ var UserStore = assign({}, EventEmitter.prototype, {
 	},
 
 // has to be done when the store has updated
-	emitChange: function () {
+	emitChange: function() {
 		this.emit(CHANGE_EVENT);
 	},
+
+	getUser: function() {
+		return user;
+	}
 
 });
 
 Dispatcher.register(function (action) {
 	switch(action.actionType) {
+		case ActionTypes.INITIALIZE: 
+			user = action.initialData.user;
+			UserStore.emitChange();  
+			break;
 		case ActionTypes.LOGIN:
+			user = action.user;
+			UserStore.emitChange(); 
+			break;
+		case ActionTypes.GETUSER:
 			user = action.user;
 			UserStore.emitChange(); 
 			break;

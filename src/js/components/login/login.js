@@ -6,9 +6,14 @@ var UserStore = require('../../stores/userStore');
 
 var Login = React.createClass({
 	getInitialState: function() {
+		var userName = UserStore.getUser() ? UserStore.getUser().name : undefined,
+			isValidated = userName ? true : false,
+			animate = !isValidated ? true : false; 
+
     	return { 
-    		value: '',
-    		isValidated: false
+    		value: userName,
+    		isValidated: isValidated,
+    		animate: animate
     	 };
  	},
 
@@ -25,13 +30,15 @@ var Login = React.createClass({
 
 	render: function() {
 		var classString = "user-login-wrapper";
-		var autoFocus = true;
-		var loginContent = <input type="text" name="username" autoComplete="off" autoCorrect="Off" onChange={this.handleChange} value={this.state.value} placeholder="whats your name?" autoFocus={autoFocus} />;
+		var loginContent = <input type="text" name="username" autoComplete="off" autoCorrect="Off" onChange={this.handleChange} value={this.state.value} placeholder="whats your name?" autoFocus="true" />;
 
 		if (this.state.isValidated) {
-			classString += " logged-animation";
-			autoFocus = false;
-			loginContent= <span>{this.state.value}</span>;
+			if (this.state.animate) {
+				classString += " logged-animation";
+			} else {
+				classString += " logged-in";
+			}
+			loginContent= <span className="user-label">{this.state.value}</span>;
 		}
 
 		return (

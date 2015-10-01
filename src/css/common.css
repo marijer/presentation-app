@@ -10,3 +10,7 @@ body, html {
 input {
 	padding: 7px 5px;
 }
+
+.main-container {
+	padding: 0 20px;
+}
