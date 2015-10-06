@@ -34,4 +34,4 @@ var PresentationActions = {
 	}
 };
 
-module.exports = UserActions;
+module.exports = PresentationActions;
