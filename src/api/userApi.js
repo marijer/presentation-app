@@ -5,11 +5,16 @@
 var UserApi = {
 	login: function(userName) {
 		var userInfo = JSON.stringify({name: userName, timestamp: new Date()});
-		localStorage.setItem('user', userInfo);
+		localStorage.setItem('currentUser', userInfo);
+		return userInfo;
+	},
+
+	logout: function() {
+		localStorage.removeItem('currentUser');
 	},
 
 	getUser: function() {
-		return JSON.parse(localStorage.getItem('user'));
+		return JSON.parse(localStorage.getItem('currentUser'));
 	}
 };
 

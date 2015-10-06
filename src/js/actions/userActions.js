@@ -14,6 +14,15 @@ var UserActions = {
 		});
 	},
 
+	logout: function() {
+		UserApi.logout();
+
+		Dispatcher.dispatch({
+			actionType: ActionsTypes.LOGOUT,
+			user: null
+		});
+	},
+	
 	getUser: function() {
 		var user = UserApi.getUser();
 

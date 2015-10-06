@@ -13,7 +13,7 @@ var LoginForm = React.createClass({
 			} else {
 				classString += " logged-in";
 			}
-			loginContent= <span className="user-label">{this.props.inputValue}</span>;
+			loginContent= <span className="user-label" onClick={this.props.logout}>{this.props.inputValue}</span>;
 		}
 
 		return (

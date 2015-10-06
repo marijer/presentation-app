@@ -9,8 +9,10 @@ var NotFoundRoute = Router.NotFoundRoute;
 var Redirect = Router.Redirect;
 
 var routes = (
-	<Route name='app' path='/' handler={require('./js/components/app')}>
-		<DefaultRoute handler={require('./js/components/overview/overview')} />
+	<Route name='app' >
+		<Route name='login' path='/' handler={require('./js/components/app')} >
+			<Route name='overview' path='overview' handler={require('./js/components/overview/overview')}  />
+		</Route>	
 		<NotFoundRoute handler={require('./js/components/notFoundPage')} />
 	</Route>	
 );
