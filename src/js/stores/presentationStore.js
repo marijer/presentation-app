@@ -35,7 +35,7 @@ var presentationStore = assign({}, EventEmitter.prototype, {
 Dispatcher.register(function (action) {
 	switch(action.actionType) {
 		case ActionTypes.PRESENTATION_GET: 
-			presentation = action.initialData.user;
+			presentation = action.presentation;
 			presentationStore.emitChange();  
 			break;
 		case ActionTypes.PRESENTATION_CREATE:
@@ -43,7 +43,7 @@ Dispatcher.register(function (action) {
 			presentationStore.emitChange(); 
 			break;
 		case ActionTypes.PRESENTATION_GET_ALL:
-			_presentations = action.initialData.presentations;
+			_presentations = action.presentations;
 			presentationStore.emitChange(); 
 			break;
 		default: 

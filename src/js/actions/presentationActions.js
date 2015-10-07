@@ -1,7 +1,7 @@
 "use strict";
 
 var Dispatcher = require('../dispatcher/appDispatcher');
-var UserApi = require('../../api/presentationApi');
+var presentationApi = require('../../api/presentationApi');
 var ActionsTypes = require('../constants/actionTypes');
 
 var PresentationActions = {
@@ -10,7 +10,7 @@ var PresentationActions = {
 
 		Dispatcher.dispatch({
 			actionType: ActionsTypes.PRESENTATION_GET,
-			user: presentation
+			presentation: presentation
 		});
 	},
 	
@@ -19,9 +19,8 @@ var PresentationActions = {
 
 		Dispatcher.dispatch({
 			actionType: ActionsTypes.PRESENTATION_CREATE,
-			user: presentation
+			presentation: presentation
 		});
-
 	},
 
 	getAll: function() {
@@ -29,7 +28,7 @@ var PresentationActions = {
 
 		Dispatcher.dispatch({
 			actionType: ActionsTypes.PRESENTATION_GET_ALL,
-			user: presentations
+			presentations: presentations
 		});
 	}
 };

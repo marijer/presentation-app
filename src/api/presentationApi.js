@@ -1,8 +1,10 @@
 "use strict";
 
+var presentations = require('./presentationData').presentations;
+
 var PresentationApi = {
 	getAll: function() {
-		return;
+		return presentations;
 	},
 
 	create: function() {

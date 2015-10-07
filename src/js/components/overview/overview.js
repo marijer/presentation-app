@@ -16,20 +16,26 @@ var Overview = React.createClass({
 
  	componentWillMount: function() {
 		PresentationStore.addChangeListener(this._onChange);
+		PresentationActions.getAll();
 	},
-
+	// cleanup when it is unmounted
 	componentWillUnmount: function() {
 		PresentationStore.removeChangeListener(this._onChange);
 	},
 
 	_onChange: function() {
-
-	},
+		this.setState({presentations: PresentationStore.getAllPresentations()});
+	}, 
 
 	render: function() {
+		var presentations = this.state.presentations.map(function(presentation) {
+		   return <li key={presentation.meta.name}>{presentation.meta.title} - {presentation.meta.name}</li>
+		})
 		return (
 			<div>
 				<h1>Overview</h1>
+				{presentations}
+
 				<Link to="addPresentation" className="btn btn-default">Add Presentation</Link>
 			</div>
 		);
