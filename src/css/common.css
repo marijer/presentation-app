@@ -21,6 +21,15 @@ input:focus, textarea:focus {
     outline: none;
 }
 
+ul {
+	margin: 0;
+	padding: 0;
+}
+
+li {
+	list-style: none;
+}
+
 .top1{ margin-top: 1em; }
 .top2{ margin-top: 2em; }
 

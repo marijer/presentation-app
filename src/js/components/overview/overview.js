@@ -6,6 +6,7 @@ var Link = Router.Link;
 
 var PresentationActions = require('../../actions/presentationActions');
 var PresentationStore = require('../../stores/presentationStore');
+var PresentationsList = require('./presentationsList');
 
 var Overview = React.createClass({
 	getInitialState: function() {
@@ -28,15 +29,15 @@ var Overview = React.createClass({
 	}, 
 
 	render: function() {
-		var presentations = this.state.presentations.map(function(presentation) {
-		   return <li key={presentation.meta.name}>{presentation.meta.title} - {presentation.meta.name}</li>
-		})
 		return (
 			<div>
 				<h1>Overview</h1>
-				{presentations}
 
-				<Link to="addPresentation" className="btn btn-default">Add Presentation</Link>
+				<PresentationsList presentations={this.state.presentations} />
+
+				<div className="top2">
+					<Link to="addPresentation" className="btn btn-default">Add Presentation</Link>
+				</div>	
 			</div>
 		);
 	}

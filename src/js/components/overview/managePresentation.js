@@ -6,8 +6,8 @@ var PresentationActions = require('../../actions/presentationActions');
 var PresentationStore = require('../../stores/presentationStore');
 var UserStore = require('../../stores/userStore');
 
-var TextInput = require('../common/textInput.js');
-var TextArea = require('../common/textArea.js');
+var SlideForm = require('./slideForm.js');
+var PresentationForm = require('./presentationForm.js');
 
 var ManagePresentationPage = React.createClass({
 	mixins: [
@@ -43,15 +43,7 @@ var ManagePresentationPage = React.createClass({
 			currentSlide: 0
 		};
 	},
-
-	setPresentationState: function(event) { // called with every keystroke
-		
-	},
-
-	presentationFormIsValid: function() {
-		
-	},
-
+	
 	savePresentation: function(event) {
 		event.preventDefault();
 		this.transitionTo('overview');
@@ -86,34 +78,8 @@ var ManagePresentationPage = React.createClass({
 
 		return (
 			<div>
-				<div className="presentation-meta">
-					<TextInput 
-						name="title"
-						placeholder="Title"
-						class="presentation-title"
-						value={presentationTitle}
-						onChange={this.onChangeTitle} />
-
-						<input type="button" value="Opslaan" className="btn btn-default" onClick={this.onSave} />
-
-				</div>
-
-				<div className="slide-wrapper">
-					<TextInput 
-						name="title"
-						placeholder="Title"
-						class="slide-title"
-						value={slide.title}
-						onChange={this.onChangeSlide} />
-
-					<TextArea 
-						name="content"
-						placeholder="content"
-						class="slide-content top1"
-						value={slide.content}
-						onChange={this.onChangeSlide} />
-
-				</div>
+				<PresentationForm title={presentationTitle} onChange={this.onChangeTitle} onSave={this.onSave} />
+				<SlideForm slide={slide} onChange={this.onChangeSlide} />
 			</div>
 		);
 	}
