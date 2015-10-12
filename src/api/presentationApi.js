@@ -7,9 +7,10 @@ var PresentationApi = {
 		return presentations;
 	},
 
-	create: function() {
-		var presentation = JSON.stringify({id: 1, timestamp: new Date()});
+	create: function(presentation) {
+		var presentation = JSON.stringify(presentation);
 		localStorage.setItem('presentation', presentation);
+		
 		return presentation;
 	},
 

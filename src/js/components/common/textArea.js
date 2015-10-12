@@ -22,7 +22,7 @@ var TextInput = React.createClass({
 			<div className={wrapperClass}>
 				<label htmlFor={this.props.name}>{this.props.label}</label>
 				<div className="field">
-					<input type="text"
+					<textarea
 						name={this.props.name}
 						className="form-control"
 						placeholder={this.props.placeholder}
@@ -30,7 +30,7 @@ var TextInput = React.createClass({
 						value={this.props.value}	
 						onChange={this.props.onChange}/>
 				</div>
-				<div className="input">{this.props.error}</div>
+				<div className="textarea">{this.props.error}</div>
 			</div>
 		);
 	}

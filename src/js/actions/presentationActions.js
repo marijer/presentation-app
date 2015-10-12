@@ -14,8 +14,8 @@ var PresentationActions = {
 		});
 	},
 	
-	create: function() {
-		var presentation = presentationApi.create();
+	create: function(_presentation) {
+		var presentation = presentationApi.create(_presentation);
 
 		Dispatcher.dispatch({
 			actionType: ActionsTypes.PRESENTATION_CREATE,
