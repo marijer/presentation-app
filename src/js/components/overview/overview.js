@@ -17,7 +17,6 @@ var Overview = React.createClass({
 
  	componentWillMount: function() {
 		PresentationStore.addChangeListener(this._onChange);
-		PresentationActions.getAll();
 	},
 	// cleanup when it is unmounted
 	componentWillUnmount: function() {
@@ -34,7 +33,6 @@ var Overview = React.createClass({
 				<h1>Overview</h1>
 
 				<PresentationsList presentations={this.state.presentations} />
-
 				<div className="top2">
 					<Link to="addPresentation" className="btn btn-default">Add Presentation</Link>
 				</div>	

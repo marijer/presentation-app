@@ -28,7 +28,11 @@ var presentationStore = assign({}, EventEmitter.prototype, {
 	},
 
 	getPresentationById: function (id) {
-		return _.find(_presentations, {id: id});
+		return _.find(_presentations, function(val, key){
+			if(val.meta.created === id){
+				return true;
+			}
+		});
 	}
 });
 

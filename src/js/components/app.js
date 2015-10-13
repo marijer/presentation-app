@@ -2,29 +2,33 @@ var React = require('react');
 
 var Router = require('react-router');
 var RouteHandler = require('react-router').RouteHandler;
-var Login = require('./login/login');
 var UserStore = require('../stores/userStore');
+var Header = require('../components/common/header');
+
+var PresentationActions = require('../actions/presentationActions');
 
 var App = React.createClass({
 	mixins: [
 		Router.Navigation
 	],
 
-	componentDidMount: function() {
+	componentWillMount: function() {
 		UserStore.addChangeListener(this._onChange);
 		this._onChange();
     },
 
     _onChange: function() {
     	if (!UserStore.isLoggedIn()){
-    		this.transitionTo('/');
+    		this.transitionTo('login');
+    	} else {
+    		PresentationActions.getAll();
     	}
     },
 
 	render: function() {
 		return (
 			<div> 
-				<Login />
+				<Header />
 				<div className="main-container">
 					<RouteHandler /> 
 				</div>

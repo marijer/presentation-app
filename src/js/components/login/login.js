@@ -41,10 +41,6 @@ var Login = React.createClass({
 		this.setState({ inputValue: event.target.value });
 	},
 
-	logout: function() {
-		UserActions.logout();
-	},
-
 	validateForm: function(event) {
 		event.preventDefault();
 		this.setState({ isValidated: true });
@@ -58,7 +54,6 @@ var Login = React.createClass({
 			<LoginForm inputValue={this.state.inputValue}
 						validateForm={this.validateForm}
 						handleChange={this.handleChange}
-						logout={this.logout}
 						isValidated={this.state.isValidated}
 						animate={this.state.animate} />
 		);

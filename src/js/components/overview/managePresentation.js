@@ -7,7 +7,7 @@ var PresentationStore = require('../../stores/presentationStore');
 var UserStore = require('../../stores/userStore');
 
 var SlideForm = require('./slideForm.js');
-var PresentationForm = require('./presentationForm.js');
+var PresentationHeader = require('./presentationHeader');
 
 var ManagePresentationPage = React.createClass({
 	mixins: [
@@ -18,6 +18,20 @@ var ManagePresentationPage = React.createClass({
 		willTransitionFrom: function(transition, component ) {
 			if(component.state.dirty &&! confirm('Leave without saving?')) {
 				transition.abort();
+			}
+		}
+	},
+
+	componentWillMount: function() {  //before it is rendered so that the render function is not called twice
+		var presentationId = this.props.params.id;
+
+		if (presentationId) {
+			var _presentation = PresentationStore.getPresentationById(presentationId);
+
+			if (_presentation) {
+				this.setState({
+					presentation: _presentation
+				});
 			}
 		}
 	},
@@ -67,6 +81,16 @@ var ManagePresentationPage = React.createClass({
 		})
 	},
 
+	newSlide: function() {
+		var _presentation = this.state.presentation; 
+		_presentation.slides.push({title: '', content: ''});
+
+		this.setState({
+			presentation: _presentation,
+			currentSlide: this.state.currentSlide + 1
+		});
+	},
+
 	onSave: function(event) {
 		// here a check if you want to create or update the presentation
 		PresentationActions.create(this.state.presentation);
@@ -78,7 +102,9 @@ var ManagePresentationPage = React.createClass({
 
 		return (
 			<div>
-				<PresentationForm title={presentationTitle} onChange={this.onChangeTitle} onSave={this.onSave} />
+				<PresentationHeader title={presentationTitle} onChange={this.onChangeTitle} onSave={this.onSave} />
+				<input type="button" value="Nieuwe slide" className="btn btn-default" onClick={this.newSlide} />
+
 				<SlideForm slide={slide} onChange={this.onChangeSlide} />
 			</div>
 		);

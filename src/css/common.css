@@ -21,6 +21,10 @@ input:focus, textarea:focus {
     outline: none;
 }
 
+a, a:hover {
+	text-decoration: none;
+}
+
 ul {
 	margin: 0;
 	padding: 0;
@@ -32,7 +36,9 @@ li {
 
 .top1{ margin-top: 1em; }
 .top2{ margin-top: 2em; }
+.right1 { margin-right: 1em;}
 
+.inline-block { display: inline-block; }
 
 .main-container {
 	padding: 0 20px;
