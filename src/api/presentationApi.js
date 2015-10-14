@@ -1,22 +1,42 @@
 "use strict";
+var _ = require('lodash');
 
-// var presentations = require('./presentationData').presentations;
+function getAllPresentations(){
+	return JSON.parse(localStorage.getItem("presentations")); 
+}
+
+function savePresentations(presentations) {
+	localStorage.setItem('presentations', JSON.stringify(presentations));
+}
 
 var PresentationApi = {
 	getAll: function() {
-		var presentations = JSON.parse(localStorage.getItem("presentations")); 
+		var presentations = getAllPresentations();
 		return presentations;
 	},
 
 	create: function(presentation) {
-		var presentations = JSON.parse(localStorage.getItem("presentations")); 
+		var presentations = getAllPresentations(); 
 		if (!presentations) {
 			presentations = [];
 		}
+		var id = new Date;
+		presentation.meta.id = id.toJSON();
 
 		presentations.push(presentation);
-		localStorage.setItem('presentations', JSON.stringify(presentations));
+		savePresentations(presentations);
 		
+		return presentation;
+	},
+
+	update: function(presentation) {
+		var presentations = getAllPresentations(); 
+
+		var index = _.findIndex(presentations, function (item) {return item.meta.id === presentation.meta.id});
+		presentations[index] = presentation;
+
+		savePresentations(presentations);
+
 		return presentation;
 	},
 

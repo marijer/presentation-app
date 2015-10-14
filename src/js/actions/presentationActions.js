@@ -23,6 +23,16 @@ var PresentationActions = {
 		});
 	},
 
+	update: function(_presentation) {
+		var presentation = presentationApi.update(_presentation);
+
+		Dispatcher.dispatch({
+			actionType: ActionsTypes.PRESENTATION_UPDATE,
+			presentation: presentation
+		});
+
+	},
+
 	getAll: function() {
 		var presentations = presentationApi.getAll();
 

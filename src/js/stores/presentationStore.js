@@ -43,6 +43,9 @@ Dispatcher.register(function (action) {
 			presentationStore.emitChange();  
 			break;
 		case ActionTypes.PRESENTATION_CREATE:
+			if(!_presentations){
+				_presentations = [];
+			}
 			_presentations.push(action.presentation);
 			presentationStore.emitChange(); 
 			break;

@@ -92,8 +92,11 @@ var ManagePresentationPage = React.createClass({
 	},
 
 	onSave: function(event) {
-		// here a check if you want to create or update the presentation
-		PresentationActions.create(this.state.presentation);
+		if(this.state.presentation.meta.id) {
+			PresentationActions.update(this.state.presentation);
+		} else {
+			PresentationActions.create(this.state.presentation);
+		}
 	},
 
 	render: function() {
