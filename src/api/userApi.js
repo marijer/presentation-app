@@ -6,7 +6,7 @@ var UserApi = {
 	login: function(userName) {
 		var userInfo = JSON.stringify({name: userName, timestamp: new Date()});
 		localStorage.setItem('currentUser', userInfo);
-		return userInfo;
+		return JSON.parse(userInfo);
 	},
 
 	logout: function() {

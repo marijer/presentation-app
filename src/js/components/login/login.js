@@ -19,7 +19,6 @@ var Login = React.createClass({
     _onChange: function() {
     	if (!UserStore.isLoggedIn()) {
     		this.setState({
-				animate: true,
 				isValidated: false
 			});
     	}
@@ -27,13 +26,11 @@ var Login = React.createClass({
 
 	getInitialState: function() {
 		var userName = UserStore.getUser() ? UserStore.getUser().name : undefined,
-			isValidated = userName ? true : false,
-			animate = !isValidated ? true : false; 
+			isValidated = userName ? true : false;
 
     	return { 
     		inputValue: userName,
-    		isValidated: isValidated,
-    		animate: animate
+    		isValidated: isValidated
     	 };
  	},
 

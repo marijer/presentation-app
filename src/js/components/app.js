@@ -15,13 +15,15 @@ var App = React.createClass({
 	componentWillMount: function() {
 		UserStore.addChangeListener(this._onChange);
 		this._onChange();
+		
+		if(UserStore.isLoggedIn()){
+			PresentationActions.getAll();
+		}
     },
 
     _onChange: function() {
     	if (!UserStore.isLoggedIn()){
     		this.transitionTo('login');
-    	} else {
-    		PresentationActions.getAll();
     	}
     },
 

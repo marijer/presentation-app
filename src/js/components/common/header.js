@@ -24,7 +24,7 @@ var Header = React.createClass({
 
 		this.setState({
 			user: _user
-		})
+		});
     },
 
 	render: function() {

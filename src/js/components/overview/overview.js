@@ -10,6 +10,9 @@ var PresentationsList = require('./presentationsList');
 
 var Overview = React.createClass({
 	getInitialState: function() {
+
+		PresentationActions.getAll();
+		
     	return { 
     		presentations: PresentationStore.getAllPresentations()
     	 };
