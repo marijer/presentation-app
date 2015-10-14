@@ -7,6 +7,7 @@ var PresentationStore = require('../../stores/presentationStore');
 var UserStore = require('../../stores/userStore');
 
 var SlideForm = require('./slideForm.js');
+var SlidesList = require('./slidesList.js');
 var PresentationHeader = require('./presentationHeader');
 
 var ManagePresentationPage = React.createClass({
@@ -91,6 +92,12 @@ var ManagePresentationPage = React.createClass({
 		});
 	},
 
+	selectSlide: function(num) {
+		this.setState({
+			currentSlide: num
+		})
+	},
+
 	onSave: function(event) {
 		if(this.state.presentation.meta.id) {
 			PresentationActions.update(this.state.presentation);
@@ -106,9 +113,12 @@ var ManagePresentationPage = React.createClass({
 		return (
 			<div>
 				<PresentationHeader title={presentationTitle} onChange={this.onChangeTitle} onSave={this.onSave} />
-				<input type="button" value="Nieuwe slide" className="btn btn-default" onClick={this.newSlide} />
-
-				<SlideForm slide={slide} onChange={this.onChangeSlide} />
+				<div className="slides-list-container inline-block">
+					<SlidesList onClick={this.newSlide} onClickSlide={this.selectSlide} slides={this.state.presentation.slides} />
+				</div>
+				<div className="slide-form-container inline-block">
+					<SlideForm slide={slide} onChange={this.onChangeSlide} />
+				</div>	
 			</div>
 		);
 	}

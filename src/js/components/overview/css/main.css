@@ -1,8 +1,16 @@
-.slide-wrapper {
-    width: 80%;
-    margin: 20px auto;
+.slides-list-container {
+    width: 20%;
+    padding: 20px;
+    background-color: #FFF;
+    margin-right: 5%;
+    box-sizing: border-box;
+}
+
+.slide-form-container {
+    width: 70%;
     background-color: #FFF;
     padding: 40px;
+    box-sizing: border-box;
 }
 
 .presentation-title input {
@@ -47,4 +55,11 @@
 
 .presentation-link:hover {
     background: #EAEAEA;
+}
+
+
+.slide-item {
+    padding: 20px;
+    border: 1px solid #CCC;
+    margin-top: 10px;
 }
