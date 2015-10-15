@@ -1,0 +1,59 @@
+.presentation-meta {
+    overflow: hidden;
+    background-color: ghostwhite;
+    padding: 10px 20px;
+}
+
+.slide-container {
+    display: flex;
+     justify-content: space-around;
+}
+
+.slides-list-container {
+    width: 20%;
+    margin-right: 5%;    
+    padding: 20px;
+    background-color: #FFF;
+    box-sizing: border-box;
+}
+
+.slide-form-container {
+    width: 80%;
+    background-color: #FFF;
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+.slide-title input{
+    width: 100%;
+    padding: 10px;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.slide-content textarea {
+    width: 100%;
+    max-width: 100%;
+    font-size: 1.3em;
+    padding: 10px;
+}
+
+.slide-item {
+    padding: 20px;
+    border: 1px solid #CCC;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.slide-item.active {
+    border-color: #19BED6;
+}
+
+.btn-new-slide {
+    width: 100%;
+    cursor: pointer;
+}
+
+.btn-new-slide:hover{
+    background: #CCC;
+}

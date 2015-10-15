@@ -7,7 +7,7 @@ var TextInput = require('../common/textInput.js');
 var PresentationHeader = React.createClass({
 	render: function() {
 		return (
-			<div className="presentation-meta">
+			<div className="presentation-meta main-container-no-gutter">
 
 		   		<Link to="overview" className="inline-block right1">
 			   		<span>terug</span>

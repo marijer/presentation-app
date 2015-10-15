@@ -23,7 +23,7 @@ var SlidesList = React.createClass({
 
 		return (
 			<div className="slides-wrapper">
-				<input type="button" value="Nieuwe slide" className="btn btn-default" onClick={this.props.onClick} />
+				<input type="button" value="Nieuwe slide" className="btn-new-slide" onClick={this.props.onClick} />
 				<ul className="slides-list">
 					{slides}
 				</ul>
