@@ -10,7 +10,12 @@ var SlidesList = React.createClass({
 		var slides = '';
 		if(this.props.slides){
 			slides = this.props.slides.map(function(slide, num) {
-			   return <li key={num} className="slide-item" onClick={this.handleClick.bind(this, num)}>
+				var className = 'slide-item';
+				if (this.props.currentSlide === num){
+					className += ' active';
+				}
+
+			   return <li key={num} className={className} onClick={this.handleClick.bind(this, num)}>
 				   		<span className="slide-number">{num}</span>
 			   		</li>
 			}, this);

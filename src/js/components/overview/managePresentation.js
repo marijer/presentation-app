@@ -114,7 +114,7 @@ var ManagePresentationPage = React.createClass({
 			<div>
 				<PresentationHeader title={presentationTitle} onChange={this.onChangeTitle} onSave={this.onSave} />
 				<div className="slides-list-container inline-block">
-					<SlidesList onClick={this.newSlide} onClickSlide={this.selectSlide} slides={this.state.presentation.slides} />
+					<SlidesList onClick={this.newSlide} currentSlide={this.state.currentSlide} onClickSlide={this.selectSlide} slides={this.state.presentation.slides} />
 				</div>
 				<div className="slide-form-container inline-block">
 					<SlideForm slide={slide} onChange={this.onChangeSlide} />

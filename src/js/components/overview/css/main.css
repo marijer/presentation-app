@@ -57,9 +57,13 @@
     background: #EAEAEA;
 }
 
-
 .slide-item {
     padding: 20px;
     border: 1px solid #CCC;
     margin-top: 10px;
+    cursor: pointer;
+}
+
+.slide-item.active {
+    border-color: #19BED6;
 }
