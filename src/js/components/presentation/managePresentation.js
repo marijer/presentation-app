@@ -2,12 +2,13 @@
 
 var React = require('react');
 var Router = require('react-router');
+
 var PresentationActions = require('../../actions/presentationActions');
 var PresentationStore = require('../../stores/presentationStore');
 var UserStore = require('../../stores/userStore');
 
+var SlideList = require('./slidesList.js');
 var SlideForm = require('./slideForm.js');
-var SlidesList = require('./slidesList.js');
 var PresentationHeader = require('./presentationHeader');
 
 var ManagePresentationPage = React.createClass({
@@ -20,22 +21,24 @@ var ManagePresentationPage = React.createClass({
 	},
 
 	statics: {
-		willTransitionFrom: function(transition, component ) {
-			if(component.state.dirty &&! confirm('Ga je weg zonder op te slaan?')) {
-				transition.abort();
-			}
-		}
+		// willTransitionFrom: function(transition, component ) {
+		// 	// if(component.state.dirty && component.props.params.id !== 'add' &&! confirm('Ga je weg zonder op te slaan?')) {
+		// 	// 	transition.abort();
+		// 	// }
+		// }
 	},
 
 	componentWillMount: function() {  //before it is rendered so that the render function is not called twice
 		var presentationId = this.props.params.id;
+		var _currentSlide = Number(this.props.params.slide) || 0;
 
 		if (presentationId) {
 			var _presentation = PresentationStore.getPresentationById(presentationId);
 
 			if (_presentation) {
 				this.setState({
-					presentation: _presentation
+					presentation: _presentation,
+					currentSlide: _currentSlide
 				});
 			}
 		}
@@ -85,21 +88,24 @@ var ManagePresentationPage = React.createClass({
 
 	newSlide: function() {
 		var _presentation = this.state.presentation; 
-		_presentation.slides.push({title: '', content: ''});
+		var num = this.state.currentSlide + 1;
 
-		var num = _presentation.slides.length - 1;
+		_presentation.slides.splice(num, 0, {title: '', content: ''});
 
 		this.setState({
 			presentation: _presentation,
 			currentSlide: num,
 			dirty: true
 		});
+
+		this.transitionTo('managePresentation', { id: this.props.params.id, slide: num });
 	},
 
 	selectSlide: function(num) {
 		this.setState({
 			currentSlide: num
 		})
+		this.transitionTo('managePresentation', { id: this.props.params.id, slide: num });
 	},
 
 	onSave: function() {
@@ -125,14 +131,17 @@ var ManagePresentationPage = React.createClass({
 	render: function() {
 		var presentationTitle = this.state.presentation.meta.title,
 			slide = this.state.presentation.slides[this.state.currentSlide];
-
+		
 		return (
 			<div>
 				<PresentationHeader title={presentationTitle} isDirty={this.state.dirty} onChange={this.onChangeTitle} onSave={this.onSave} onKill={this.onKill} />
 				
 				<div className='slide-container'>
 					<div className='slides-list-container inline-block'>
-						<SlidesList onClick={this.newSlide} currentSlide={this.state.currentSlide} onClickSlide={this.selectSlide} slides={this.state.presentation.slides} />
+						<SlideList 	addNewSlide={this.newSlide}
+									currentSlide={this.state.currentSlide} 
+									onClickSlide={this.selectSlide} 
+									slides={this.state.presentation.slides}/> 
 					</div>
 					<div className='slide-form-container inline-block top2'>
 						<SlideForm slide={slide} onChange={this.onChangeSlide} />
