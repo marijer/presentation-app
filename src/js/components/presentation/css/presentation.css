@@ -1,4 +1,4 @@
-.presentation-meta {
+.sub-header {
     overflow: hidden;
     background-color: ghostwhite;
     padding: 10px 20px;
@@ -64,9 +64,4 @@
 
 .btn-new-slide {
     width: 100%;
-    cursor: pointer;
-}
-
-.btn-new-slide:hover{
-    background: #CCC;
 }

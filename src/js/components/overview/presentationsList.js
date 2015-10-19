@@ -12,7 +12,7 @@ var PresentationsList = React.createClass({
 		if(this.props.presentations){
 			presentations = this.props.presentations.map(function(presentation) {
 			   return <li key={presentation.meta.name} className='presentation-item' >
-			   		<Link className='presentation-link' to='managePresentation' params={{id: presentation.meta.created}}>
+			   		<Link className='presentation-link' to='managePresentation' params={{id: presentation.meta.id}}>
 				   		<span className='title'>{presentation.meta.title}</span>
 				   		<span className='author'>{presentation.meta.author}</span>
 			   		</Link>

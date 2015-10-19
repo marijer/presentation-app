@@ -22,7 +22,7 @@ var App = React.createClass({
     },
 
     _onChange: function() {
-    	if (!UserStore.isLoggedIn()){
+    	if (!UserStore.isLoggedIn()) {
     		this.transitionTo('login');
     	}
     },

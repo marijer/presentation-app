@@ -32,12 +32,16 @@ var Overview = React.createClass({
 
 	render: function() {
 		return (
-			<div className='main-offset'>
-				<h1>Overview</h1>
-				<PresentationsList presentations={this.state.presentations} />
-				<div className='top2'>
-					<Link to='addPresentation' className='btn btn-default'>Add Presentation</Link>
-				</div>	
+			<div>
+				<div className='sub-header'>
+					<div>
+						<Link to='addPresentation' className='btn btn-new'>Add Presentation</Link>
+					</div>
+				</div>
+
+				<div className='main-offset'>
+					<PresentationsList presentations={this.state.presentations} />
+				</div>
 			</div>
 		);
 	}

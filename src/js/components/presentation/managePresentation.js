@@ -21,7 +21,7 @@ var ManagePresentationPage = React.createClass({
 
 	statics: {
 		willTransitionFrom: function(transition, component ) {
-			if(component.state.dirty &&! confirm('Leave without saving?')) {
+			if(component.state.dirty &&! confirm('Ga je weg zonder op te slaan?')) {
 				transition.abort();
 			}
 		}
@@ -63,18 +63,14 @@ var ManagePresentationPage = React.createClass({
 		};
 	},
 	
-	savePresentation: function(event) {
-		event.preventDefault();
-		this.transitionTo('overview');
-	},
-
 	onChangeTitle: function(event) {
 		var _presentation = this.state.presentation;
 		_presentation.meta.title = event.target.value;
 
 		this.setState({
-			presentation: _presentation
-		})
+			presentation: _presentation,
+			dirty: true
+		});
 	},
 
 	onChangeSlide: function(event) {
@@ -82,8 +78,9 @@ var ManagePresentationPage = React.createClass({
 		_presentation.slides[this.state.currentSlide][event.target.name] = event.target.value;
 
 		this.setState({
-			presentation: _presentation
-		})
+			presentation: _presentation,
+			dirty: true
+		});
 	},
 
 	newSlide: function() {
@@ -94,7 +91,8 @@ var ManagePresentationPage = React.createClass({
 
 		this.setState({
 			presentation: _presentation,
-			currentSlide: num
+			currentSlide: num,
+			dirty: true
 		});
 	},
 
@@ -110,10 +108,18 @@ var ManagePresentationPage = React.createClass({
 		} else {
 			PresentationActions.create(this.state.presentation);
 		}
+
+		this.setState({
+			dirty: false
+		});
+
 	},
 
 	onKill: function(event) {
-		PresentationActions.kill(this.state.presentation);
+		if(confirm('Weet je zeker dat je de presentatie wilt verwijderen?')) {
+			PresentationActions.kill(this.state.presentation);
+			this.transitionTo('overview');
+		}
 	},
 
 	render: function() {
@@ -122,7 +128,8 @@ var ManagePresentationPage = React.createClass({
 
 		return (
 			<div>
-				<PresentationHeader title={presentationTitle} onChange={this.onChangeTitle} onSave={this.onSave} onKill={this.onDelete} />
+				<PresentationHeader title={presentationTitle} isDirty={this.state.dirty} onChange={this.onChangeTitle} onSave={this.onSave} onKill={this.onKill} />
+				
 				<div className='slide-container'>
 					<div className='slides-list-container inline-block'>
 						<SlidesList onClick={this.newSlide} currentSlide={this.state.currentSlide} onClickSlide={this.selectSlide} slides={this.state.presentation.slides} />

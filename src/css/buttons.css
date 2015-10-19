@@ -1,0 +1,43 @@
+.btn {
+	border: 1px solid #CCC;
+	padding: 7px 14px;
+	color: #FFF;
+	opacity: .9;
+	font-size: 11px;
+}
+
+.btn:hover {
+	opacity: 1;
+}
+
+.btn:enabled {
+	cursor: pointer;
+}
+
+.btn:disabled {
+    color: #CCC;
+    border-color: #E6E6E6;
+}
+
+.btn-save:enabled {
+	background-color: #82BF56;
+	border-color: #669644;
+	text-shadow: 0px -1px #669644;
+}
+
+.btn-new {
+    border-color: #2980B9;
+    background-color: #3498DB;
+    text-shadow: 0px -1px #2980B9;
+}
+
+.btn-delete {
+	background-color: #E74C3C;
+	border-color: #BD3E31;
+	text-shadow: 0px -1px #BD3E31;
+}
+
+.btn-back {
+	background-color: #f1c40f;
+  	border-color: 0px 5px 0px 0px #D8AB00;
+}

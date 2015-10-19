@@ -48,7 +48,7 @@ var Header = React.createClass({
 		}
 
 		 var path = this.getPath();
-		 if(path.indexOf('presentation') > 0) {
+		 if(path.indexOf('presentation') > 0 || path.indexOf('add') > 0) {
 		 	backOption = <Link to='overview' className='inline-block right1'>
 			   			<span>terug</span>
 		   			</Link>

@@ -7,16 +7,22 @@ var TextInput = require('../common/textInput.js');
 var PresentationHeader = React.createClass({
 	propTypes: {
 		title: React.PropTypes.string.isRequired,
+		isDirty: React.PropTypes.bool.isRequired,
 		onChange: React.PropTypes.func.isRequired,
 		onSave: React.PropTypes.func.isRequired,
-		onDelete: React.PropTypes.func.isRequired
+		onKill: React.PropTypes.func.isRequired
 	},
 
 	render: function() {
 		return (
-			<div className='presentation-meta'>
+			<div className='sub-header'>
 				<div className='inline-block right1'>
-					<input type='button' value='Opslaan' className='btn btn-default' onClick={this.props.onSave} />
+					<button type='button' 
+						className='btn btn-save' 
+						disabled={!this.props.isDirty} 
+						onClick={this.props.onSave} >
+						Opslaan
+					</button>
 				</div>
 
 				<div className='inline-block right1'>
@@ -29,11 +35,14 @@ var PresentationHeader = React.createClass({
 				</div>
 
 				<div className='inline-block fl-right'>
-					<input type='button' value='Verwijderen' className='btn btn-default' onClick={this.props.onDelete} />
+					<button type='button' 
+							className='btn btn-delete' 
+							onClick={this.props.onKill} >
+						Verwijderen
+					</button>		
 				</div>
 
 			</div>
-
 		);	
 	}
 });

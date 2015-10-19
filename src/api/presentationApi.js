@@ -20,8 +20,7 @@ var PresentationApi = {
 		if (!presentations) {
 			presentations = [];
 		}
-		var id = new Date;
-		presentation.meta.id = id.toJSON();
+		presentation.meta.id = String(Date.now());
 
 		presentations.push(presentation);
 		savePresentations(presentations);
