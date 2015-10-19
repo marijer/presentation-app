@@ -21,11 +21,11 @@ var ManagePresentationPage = React.createClass({
 	},
 
 	statics: {
-		// willTransitionFrom: function(transition, component ) {
-		// 	// if(component.state.dirty && component.props.params.id !== 'add' &&! confirm('Ga je weg zonder op te slaan?')) {
-		// 	// 	transition.abort();
-		// 	// }
-		// }
+		willTransitionFrom: function(transition, component ) {
+			if(component.state.dirty && transition.path === '/' &&! confirm('Ga je weg zonder op te slaan?')) {
+				transition.abort();
+			}
+		}
 	},
 
 	componentWillMount: function() {  //before it is rendered so that the render function is not called twice
@@ -65,25 +65,34 @@ var ManagePresentationPage = React.createClass({
 			currentSlide: 0
 		};
 	},
-	
-	onChangeTitle: function(event) {
-		var _presentation = this.state.presentation;
-		_presentation.meta.title = event.target.value;
 
+	updatePresentation: function(_presentation) {
 		this.setState({
 			presentation: _presentation,
 			dirty: true
 		});
 	},
 
+	transitionSlide: function(num) {
+		this.setState({
+			currentSlide: num,
+		});
+
+		this.transitionTo('managePresentation', { id: this.props.params.id, slide: num });
+	},
+	
+	onChangeTitle: function(event) {
+		var _presentation = this.state.presentation;
+		_presentation.meta.title = event.target.value;
+
+		this.updatePresentation(_presentation);
+	},
+
 	onChangeSlide: function(event) {
 		var _presentation = this.state.presentation; 
 		_presentation.slides[this.state.currentSlide][event.target.name] = event.target.value;
 
-		this.setState({
-			presentation: _presentation,
-			dirty: true
-		});
+		this.updatePresentation(_presentation);
 	},
 
 	newSlide: function() {
@@ -92,20 +101,26 @@ var ManagePresentationPage = React.createClass({
 
 		_presentation.slides.splice(num, 0, {title: '', content: ''});
 
-		this.setState({
-			presentation: _presentation,
-			currentSlide: num,
-			dirty: true
-		});
-
-		this.transitionTo('managePresentation', { id: this.props.params.id, slide: num });
+		this.updatePresentation(_presentation);
+		this.transitionSlide(num);
 	},
 
 	selectSlide: function(num) {
-		this.setState({
-			currentSlide: num
-		})
-		this.transitionTo('managePresentation', { id: this.props.params.id, slide: num });
+		this.transitionSlide(num);
+	},
+
+	killSlide:function(num) {
+		var _presentation = this.state.presentation; 
+		_presentation.slides.splice(num,1);
+
+		if(_presentation.slides.length === 0) {
+			_presentation.slides.push({title: '', content: ''});
+		}
+
+		num = num === 0 ? 0 : num -1;
+
+		this.updatePresentation(_presentation);
+		this.transitionSlide(num);
 	},
 
 	onSave: function() {
@@ -139,6 +154,7 @@ var ManagePresentationPage = React.createClass({
 				<div className='slide-container'>
 					<div className='slides-list-container inline-block'>
 						<SlideList 	addNewSlide={this.newSlide}
+									killSlide={this.killSlide}
 									currentSlide={this.state.currentSlide} 
 									onClickSlide={this.selectSlide} 
 									slides={this.state.presentation.slides}/> 

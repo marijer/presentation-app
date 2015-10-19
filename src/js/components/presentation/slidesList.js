@@ -5,11 +5,16 @@ var SlidesList = React.createClass({
 		slides: React.PropTypes.array.isRequired,
 		onClickSlide: React.PropTypes.func.isRequired,
 		addNewSlide: React.PropTypes.func.isRequired,
-		currentSlide: React.PropTypes.number.isRequired
+		currentSlide: React.PropTypes.number.isRequired,
+		killSlide: React.PropTypes.func.isRequired
 	},
-	
-	handleClick: function(num) {
+
+	clickSlide: function(num) {
 		this.props.onClickSlide(num);
+	},
+
+	killSlide: function(num) {
+		this.props.killSlide(num);
 	},
 
 	render: function() {
@@ -21,9 +26,12 @@ var SlidesList = React.createClass({
 					className += ' active';
 				}
 				
-				return <li key={num} className={className} onClick={this.handleClick.bind(this, num)}>
-			   			<div className='slide-title'>{slide.title}</div>
-				   		<div className='slide-number'>{num + 1}</div>
+				return <li key={num}>
+							<div className={className} onClick={this.clickSlide.bind(this, num)}>
+					   			<div className='slide-title'>{slide.title}</div>
+						   		<div className='slide-number'>{num + 1}</div>
+					   		</div>
+					   		<a onClick={this.killSlide.bind(this, num)}>x</a>
 				   		</li>
 			}, this);
 		}
