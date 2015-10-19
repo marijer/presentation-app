@@ -23,6 +23,15 @@ var PresentationActions = {
 		});
 	},
 
+	kill: function(_presentation) {
+		var presentations = presentationApi.kill(_presentation);
+
+		Dispatcher.dispatch({
+			actionType: ActionsTypes.PRESENTATION_DELETE,
+			presentations: presentations
+		});	
+	},
+
 	update: function(_presentation) {
 		var presentation = presentationApi.update(_presentation);
 

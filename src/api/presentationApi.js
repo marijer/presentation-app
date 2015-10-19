@@ -40,6 +40,18 @@ var PresentationApi = {
 		return presentation;
 	},
 
+	kill: function(presentation) {
+		var presentations = getAllPresentations(); 
+
+		var updatedArray = presentations.filter(function(item) {
+			return item.meta.id !== presentation.meta.id;
+		});
+
+		savePresentations(updatedArray);
+
+		return updatedArray;
+	},
+
 	get: function(id) {
 		// do something here
 	}

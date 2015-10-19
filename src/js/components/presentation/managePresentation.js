@@ -86,9 +86,11 @@ var ManagePresentationPage = React.createClass({
 		var _presentation = this.state.presentation; 
 		_presentation.slides.push({title: '', content: ''});
 
+		var num = _presentation.slides.length - 1;
+
 		this.setState({
 			presentation: _presentation,
-			currentSlide: this.state.currentSlide + 1
+			currentSlide: num
 		});
 	},
 
@@ -106,18 +108,22 @@ var ManagePresentationPage = React.createClass({
 		}
 	},
 
+	onKill: function(event) {
+		PresentationActions.kill(this.state.presentation);
+	},
+
 	render: function() {
 		var presentationTitle = this.state.presentation.meta.title,
 			slide = this.state.presentation.slides[this.state.currentSlide];
 
 		return (
 			<div>
-				<PresentationHeader title={presentationTitle} onChange={this.onChangeTitle} onSave={this.onSave} />
-				<div className="top2 slide-container">
+				<PresentationHeader title={presentationTitle} onChange={this.onChangeTitle} onSave={this.onSave} onKill={this.onDelete} />
+				<div className="slide-container">
 					<div className="slides-list-container inline-block">
 						<SlidesList onClick={this.newSlide} currentSlide={this.state.currentSlide} onClickSlide={this.selectSlide} slides={this.state.presentation.slides} />
 					</div>
-					<div className="slide-form-container inline-block">
+					<div className="slide-form-container inline-block top2">
 						<SlideForm slide={slide} onChange={this.onChangeSlide} />
 					</div>
 				</div>	

@@ -14,11 +14,17 @@
     margin-right: 5%;    
     padding: 20px;
     background-color: #FFF;
+    height: calc(100vh - 50px - 38px);
+    overflow-y: scroll;
+
     box-sizing: border-box;
 }
 
 .slide-form-container {
     width: 80%;
+    height: 500px;
+    margin-right: 5%;
+    border: 1px solid rgba(53, 53, 53, 0.18);
     background-color: #FFF;
     padding: 40px;
     box-sizing: border-box;
@@ -38,15 +44,22 @@
     padding: 10px;
 }
 
-.slide-item {
+.slide-tile {
     padding: 20px;
     border: 1px solid #CCC;
     margin-top: 10px;
     cursor: pointer;
 }
 
-.slide-item.active {
+.slide-tile.active {
     border-color: #19BED6;
+    box-shadow: inset 0px 0px 2px #19BED6;
+}
+
+.slide-number {
+    text-align: right;
+    font-size: .9em;
+    color: #676767;
 }
 
 .btn-new-slide {
