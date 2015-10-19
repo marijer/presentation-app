@@ -13,7 +13,7 @@ var routes = (
 		<Route name='login' path='login' handler={require('./js/components/login/login')} />
 		<DefaultRoute name='overview' handler={require('./js/components/overview/overview')}  />
 		<Route name='addPresentation' path='add' handler={require('./js/components/presentation/managePresentation')}  />
-		<Route name='managePresentation' path="presentation/:id" handler={require('./js/components/presentation/managePresentation')} />
+		<Route name='managePresentation' path='presentation/:id' handler={require('./js/components/presentation/managePresentation')} />
 		<NotFoundRoute handler={require('./js/components/notFoundPage')} />
 	</Route>	
 );

@@ -69,16 +69,16 @@ gulp.task('css', function(){
 
 gulp.task('lint', function(){
 	return gulp.src(config.paths.js)
-		.pipe(eslint({config: 'eslint.config.json'})) // missing config eslint
-		.pipe(eslint.format())
-		.pipe(eslint.failAfterError());
+			.pipe(eslint())		
+			.pipe(eslint.format())
+			.pipe(eslint.failAfterError());
 });
 
 gulp.task('watch', function() {
   gulp.watch([config.paths.html], ['html']);
   gulp.watch([config.paths.css], ['css']);
-  gulp.watch([config.paths.js], ['js']);
+  gulp.watch([config.paths.js], ['js', 'lint']);
 });
 
 
-gulp.task('default', ['html', 'css', 'js', 'open', 'watch']);
+gulp.task('default', ['html', 'css', 'js', 'lint', 'open', 'watch']);

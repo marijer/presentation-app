@@ -3,20 +3,25 @@ var TextInput = require('../common/textInput.js');
 var TextArea = require('../common/textArea.js');
 
 var SlideForm = React.createClass({
+	propTypes: {
+		slide: React.PropTypes.object.isRequired,
+		onChange: React.PropTypes.func.isRequired
+	},
+
 	render: function() {
 		return (
-			<div className="slide-wrapper">
+			<div className='slide-wrapper'>
 				<TextInput 
-					name="title"
-					placeholder="Title"
-					class="slide-title"
+					name='title'
+					placeholder='Title'
+					class='slide-title'
 					value={this.props.slide.title}
 					onChange={this.props.onChange} />
 
 				<TextArea 
-					name="content"
-					placeholder="content"
-					class="slide-content top1"
+					name='content'
+					placeholder='content'
+					class='slide-content top1'
 					value={this.props.slide.content}
 					onChange={this.props.onChange} />
 			</div>

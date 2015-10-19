@@ -8,7 +8,7 @@ var NotFoundPage = React.createClass({
 		return(
 			<div>
 				<h1>Pagina niet gevonden</h1>
-				<p><Link to="app">Back to Home</Link></p>
+				<p><Link to='app'>Back to Home</Link></p>
 			</div>
 		);
 	}

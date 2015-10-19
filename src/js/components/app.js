@@ -31,7 +31,7 @@ var App = React.createClass({
 		return (
 			<div> 
 				<Header />
-				<div className="main-container">
+				<div className='main-container'>
 					<RouteHandler /> 
 				</div>
 			</div>

@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 var React = require('react');
 var Router = require('react-router');
@@ -14,6 +14,10 @@ var ManagePresentationPage = React.createClass({
 	mixins: [
 		Router.Navigation
 	],
+
+	propTypes: {
+		params: React.PropTypes.object
+	},
 
 	statics: {
 		willTransitionFrom: function(transition, component ) {
@@ -119,11 +123,11 @@ var ManagePresentationPage = React.createClass({
 		return (
 			<div>
 				<PresentationHeader title={presentationTitle} onChange={this.onChangeTitle} onSave={this.onSave} onKill={this.onDelete} />
-				<div className="slide-container">
-					<div className="slides-list-container inline-block">
+				<div className='slide-container'>
+					<div className='slides-list-container inline-block'>
 						<SlidesList onClick={this.newSlide} currentSlide={this.state.currentSlide} onClickSlide={this.selectSlide} slides={this.state.presentation.slides} />
 					</div>
-					<div className="slide-form-container inline-block top2">
+					<div className='slide-form-container inline-block top2'>
 						<SlideForm slide={slide} onChange={this.onChangeSlide} />
 					</div>
 				</div>	

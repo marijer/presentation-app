@@ -22,5 +22,9 @@
     "react-router": "^0.13.3",
     "reactify": "^1.1.1",
     "vinyl-source-stream": "^1.1.0"
+  },
+  "devDependencies": {
+    "eslint": "^1.7.1",
+    "eslint-plugin-react": "^3.6.2"
   }
 }
