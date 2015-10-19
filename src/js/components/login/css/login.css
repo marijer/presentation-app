@@ -1,6 +1,7 @@
-.user-login-wrapper {
-    width: 400px;
-    background-color: #CCC;
+.login-wrapper {
+    max-width: 400px;
+    min-width: 200px;
+    background-color: #E0E0E0;
     padding: 30px;
     margin: 50px auto 0;
     border-radius: 4px;
@@ -11,44 +12,7 @@
      box-sizing: border-box;
 }
 
-/*
-  animation-name: stretch;
-  animation-duration: 1.5s; 
-  animation-timing-function: ease-out; 
-  animation-delay: 0;
-  animation-direction: alternate;
-  animation-iteration-count: infinite;
-  animation-fill-mode: none;
-  animation-play-state: running; 
-*/
-
-.user-login-wrapper.logged-animation {
-  animation: stretch-to-top 1.2s 1 forwards ease-in-out;
-}
-
-.user-login-wrapper.logged-animation input {
-    border: none;
-    background-color: transparent;
-    padding: 0 14px;
-    font-size: 1.1em;
-    pointer-events: none;
-
-    transition: background 0.2s ease, 
-                padding 0.8s linear, 
-                border 0.8s linear;
-}
-
-@keyframes stretch-to-top {
-  50% {
-    margin-top: 0;
-  }
-  100% {
-    border-radius: 0;
+.login-input-wrapper input{
     width: 100%;
-    margin-top: 0;
-    margin-bottom: 20px;
-    background-color: #FFF;
-    padding: 10px 20px;
-  }
+    padding: 10px 15px;
 }
-

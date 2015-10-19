@@ -1,6 +1,8 @@
 'use strict';
 
 var React = require('react');
+var TextInput = require('../common/textInput.js');
+
 
 var LoginForm = React.createClass({
 	propTypes: {
@@ -10,13 +12,22 @@ var LoginForm = React.createClass({
 	},
 
 	render: function() {
-		var classString = 'user-login-wrapper';
-		var loginContent = <input type='text' name='username' autoComplete='off' autoCorrect='Off' onChange={this.props.handleChange} value={this.props.inputValue} placeholder='whats your name?' autoFocus='true' />;
-
 		return (
 			<form onSubmit={this.props.validateForm}>
-				<div className={classString}>
-					{loginContent}
+				<div className='user-login-wrapper'>
+					<TextInput 
+					name='username'
+					autoFocus='true'
+					placeholder='Wat is je naam?'
+					class='login-input-wrapper'
+					value={this.props.inputValue}
+					onChange={this.props.handleChange} />
+
+					<button type='button' 
+						className='btn btn-new top1' 
+						onClick={this.props.validateForm} >
+						Login
+					</button>
 				</div>
 			</form>
 		);

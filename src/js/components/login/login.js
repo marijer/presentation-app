@@ -6,23 +6,12 @@ var Router = require('react-router');
 var UserActions = require('../../actions/userActions');
 var UserStore = require('../../stores/userStore');
 var LoginForm = require('./loginForm');
+var LogoutForm = require('./logoutForm');
 
 var Login = React.createClass({
 	mixins: [
 		Router.Navigation
 	],
-
-	componentDidMount: function() {
-		UserStore.addChangeListener(this._onChange);
-    },
-
-    _onChange: function() {
-    	if (!UserStore.isLoggedIn()) {
-    		this.setState({
-				isValidated: false
-			});
-    	}
-    },
 
 	getInitialState: function() {
 		var userName = UserStore.getUser() ? UserStore.getUser().name : undefined,
@@ -46,13 +35,34 @@ var Login = React.createClass({
 		this.transitionTo('overview');
 	},
 
+	logout: function() {
+		UserActions.logout();
+		this.setState({
+			inputValue: '',
+    		isValidated: false
+		})
+	},
+
 	render: function() {
-		return (
-			<LoginForm inputValue={this.state.inputValue}
+		var loggedIn = UserStore.getUser() ? true : false;
+		var content;
+
+		if(!loggedIn) {
+			content = <LoginForm inputValue={this.state.inputValue}
 						validateForm={this.validateForm}
 						handleChange={this.handleChange}
 						isValidated={this.state.isValidated}
 						animate={this.state.animate} />
+		} else {
+			content = <LogoutForm 
+							userName={this.state.inputValue} 
+							logout={this.logout} />
+		}
+
+		return (
+			<div className='login-wrapper'>
+				{content}
+			</div>
 		);
 	}
 });

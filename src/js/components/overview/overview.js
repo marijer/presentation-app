@@ -36,7 +36,7 @@ var Overview = React.createClass({
 			<div>
 				<div className='sub-header'>
 					<div>
-						<Link to='addPresentation' className='btn btn-new'>Add Presentation</Link>
+						<Link to='addPresentation' className='btn btn-new'>Nieuwe Presentatie</Link>
 					</div>
 				</div>
 

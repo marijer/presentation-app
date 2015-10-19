@@ -3,7 +3,6 @@ var Router = require('react-router');
 var Link = Router.Link;
 
 var UserStore = require('../../stores/userStore');
-var UserActions = require('../../actions/userActions');
 
 var Header = React.createClass({
 	mixins: [
@@ -34,8 +33,7 @@ var Header = React.createClass({
     logout: function(event) {
 		event.preventDefault();
 
-		UserActions.logout();
-		this.transitionTo('login');
+		this.transitionTo('user');
 	},
 
 
@@ -48,7 +46,7 @@ var Header = React.createClass({
 		}
 
 		 var path = this.getPath();
-		 if(path.indexOf('presentation') > 0 || path.indexOf('add') > 0) {
+		 if(path.indexOf('presentation') > 0 || path.indexOf('add') > 0 || path.indexOf('user') > 0) {
 		 	backOption = <Link to='overview' className='inline-block right1'>
 			   			<span>terug</span>
 		   			</Link>

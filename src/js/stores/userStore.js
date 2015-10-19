@@ -44,7 +44,7 @@ Dispatcher.register(function (action) {
 			UserStore.emitChange(); 
 			break;
 		case ActionTypes.LOGOUT:
-			user = {};
+			user = null;
 			UserStore.emitChange(); 
 			break;
 		case ActionTypes.GETUSER:

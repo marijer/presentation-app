@@ -8,6 +8,7 @@ var TextInput = React.createClass({
 		label: React.PropTypes.string,
 		onChange: React.PropTypes.func.isRequired,
 		placeholder: React.PropTypes.string,
+		autoFocus: React.PropTypes.string, 
 		value: React.PropTypes.string,
 		error: React.PropTypes.string,
 		class: React.PropTypes.string
@@ -24,6 +25,9 @@ var TextInput = React.createClass({
 				<label htmlFor={this.props.name}>{this.props.label}</label>
 				<div className='field'>
 					<input type='text'
+						autoComplete='off' 
+						autoFocus={this.props.autoFocus}
+						autoCorrect='Off'
 						name={this.props.name}
 						className='form-control'
 						placeholder={this.props.placeholder}
