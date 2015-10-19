@@ -17,7 +17,9 @@ var App = React.createClass({
 		this._onChange();
 		
 		if(UserStore.isLoggedIn()){
-			PresentationActions.getAll();
+			var user = UserStore.getUser();
+
+			PresentationActions.getAll(user.id);
 		}
     },
 

@@ -42,8 +42,8 @@ var PresentationActions = {
 
 	},
 
-	getAll: function() {
-		var presentations = presentationApi.getAll();
+	getAll: function(userid) {
+		var presentations = presentationApi.getAll(userid);
 
 		Dispatcher.dispatch({
 			actionType: ActionsTypes.PRESENTATION_GET_ALL,

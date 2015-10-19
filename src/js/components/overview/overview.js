@@ -7,12 +7,13 @@ var Link = Router.Link;
 var PresentationActions = require('../../actions/presentationActions');
 var PresentationStore = require('../../stores/presentationStore');
 var PresentationsList = require('./presentationsList');
+var UserStore = require('../../stores/userStore');
 
 var Overview = React.createClass({
 	getInitialState: function() {
+		var user = UserStore.getUser();
+		PresentationActions.getAll(user.id);
 
-		PresentationActions.getAll();
-		
     	return { 
     		presentations: PresentationStore.getAllPresentations()
     	 };

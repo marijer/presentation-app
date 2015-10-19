@@ -8,9 +8,9 @@ var PresentationsList = React.createClass({
 	},
 
 	render: function() {
-		var presentations = '';
+		var _presentations = '';
 		if(this.props.presentations){
-			presentations = this.props.presentations.map(function(presentation) {
+			_presentations = this.props.presentations.map(function(presentation) {
 			   return <li key={presentation.meta.name} className='presentation-item' >
 			   		<Link className='presentation-link' to='managePresentation' params={{id: presentation.meta.id}}>
 				   		<span className='title'>{presentation.meta.title}</span>
@@ -22,7 +22,7 @@ var PresentationsList = React.createClass({
 
 		return (
 			<ul className='presentations-list'>
-				{presentations}
+				{_presentations}
 			</ul>	
 		)
 	}

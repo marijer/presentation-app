@@ -46,7 +46,7 @@ var ManagePresentationPage = React.createClass({
 		var presentation = {
 			meta: {
 				created: new Date(),
-				author: user.name,
+				author_id: user.id,
 				title: ''
 			},
 			slides: [{

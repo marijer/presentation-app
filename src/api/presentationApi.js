@@ -10,16 +10,21 @@ function savePresentations(presentations) {
 }
 
 var PresentationApi = {
-	getAll: function() {
-		var presentations = getAllPresentations();
-		return presentations;
+	getAll: function(userid) {
+		var _presentations = getAllPresentations();
+		
+		var my_presentations = _.filter(_presentations, function(val, key){
+			if(val.meta.author_id === userid){
+				return true;
+			}
+		});
+
+		return my_presentations;
 	},
 
 	create: function(presentation) {
-		var presentations = getAllPresentations(); 
-		if (!presentations) {
-			presentations = [];
-		}
+		var presentations = getAllPresentations() || [];
+
 		presentation.meta.id = String(Date.now());
 
 		presentations.push(presentation);
@@ -49,10 +54,6 @@ var PresentationApi = {
 		savePresentations(updatedArray);
 
 		return updatedArray;
-	},
-
-	get: function(id) {
-		// do something here
 	}
 };
 
