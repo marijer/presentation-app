@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 var Dispatcher = require('../dispatcher/appDispatcher');
 var ActionTypes = require('../constants/actionTypes');
@@ -35,24 +35,24 @@ var UserStore = assign({}, EventEmitter.prototype, {
 
 Dispatcher.register(function (action) {
 	switch(action.actionType) {
-		case ActionTypes.INITIALIZE: 
-			user = action.initialData.user;
-			UserStore.emitChange();  
-			break;
-		case ActionTypes.LOGIN:
-			user = action.user;
-			UserStore.emitChange(); 
-			break;
-		case ActionTypes.LOGOUT:
-			user = null;
-			UserStore.emitChange(); 
-			break;
-		case ActionTypes.GETUSER:
-			user = action.user;
-			UserStore.emitChange(); 
-			break;
-		default: 
-			// no operations
+	case ActionTypes.INITIALIZE: 
+		user = action.initialData.user;
+		UserStore.emitChange();  
+		break;
+	case ActionTypes.LOGIN:
+		user = action.user;
+		UserStore.emitChange(); 
+		break;
+	case ActionTypes.LOGOUT:
+		user = null;
+		UserStore.emitChange(); 
+		break;
+	case ActionTypes.GETUSER:
+		user = action.user;
+		UserStore.emitChange(); 
+		break;
+	default: 
+		// no operations
 	}
 });
 

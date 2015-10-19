@@ -1,8 +1,8 @@
-"use strict";
+'use strict';
 var _ = require('lodash');
 
-function getAllPresentations(){
-	return JSON.parse(localStorage.getItem("presentations")); 
+function getAllPresentations() {
+	return JSON.parse(localStorage.getItem('presentations')); 
 }
 
 function savePresentations(presentations) {
@@ -13,8 +13,8 @@ var PresentationApi = {
 	getAll: function(userid) {
 		var _presentations = getAllPresentations();
 		
-		var my_presentations = _.filter(_presentations, function(val, key){
-			if(val.meta.author_id === userid){
+		var my_presentations = _.filter(_presentations, function(val) {
+			if(val.meta.author_id === userid) {
 				return true;
 			}
 		});

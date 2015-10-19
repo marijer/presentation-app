@@ -14,12 +14,12 @@ var Overview = React.createClass({
 		var user = UserStore.getUser();
 		PresentationActions.getAll(user.id);
 
-    	return { 
-    		presentations: PresentationStore.getAllPresentations()
-    	 };
- 	},
+		return { 
+			presentations: PresentationStore.getAllPresentations()
+		};
+	},
 
- 	componentWillMount: function() {
+	componentWillMount: function() {
 		PresentationStore.addChangeListener(this._onChange);
 	},
 	// cleanup when it is unmounted

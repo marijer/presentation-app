@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 var React = require('react');
 var Router = require('react-router');
@@ -17,11 +17,11 @@ var Login = React.createClass({
 		var userName = UserStore.getUser() ? UserStore.getUser().name : undefined,
 			isValidated = userName ? true : false;
 
-    	return { 
-    		inputValue: userName,
-    		isValidated: isValidated
-    	 };
- 	},
+		return { 
+			inputValue: userName,
+			isValidated: isValidated
+		};
+	},
 
 	handleChange: function(event) {
 		this.setState({ inputValue: event.target.value });
@@ -39,7 +39,7 @@ var Login = React.createClass({
 		UserActions.logout();
 		this.setState({
 			inputValue: '',
-    		isValidated: false
+			isValidated: false
 		})
 	},
 

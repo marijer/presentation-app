@@ -16,18 +16,18 @@ var App = React.createClass({
 		UserStore.addChangeListener(this._onChange);
 		this._onChange();
 		
-		if(UserStore.isLoggedIn()){
+		if(UserStore.isLoggedIn()) {
 			var user = UserStore.getUser();
 
 			PresentationActions.getAll(user.id);
 		}
-    },
+	},
 
-    _onChange: function() {
-    	if (!UserStore.isLoggedIn()) {
-    		this.transitionTo('login');
-    	}
-    },
+	_onChange: function() {
+		if (!UserStore.isLoggedIn()) {
+			this.transitionTo('login');
+		}
+	},
 
 	render: function() {
 		return (

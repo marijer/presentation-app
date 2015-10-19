@@ -16,11 +16,11 @@ var PresentationsList = React.createClass({
 	render: function() {
 		var self = this;
 		var _presentations = '';
-		if(this.props.presentations){
+		if(this.props.presentations) {
 			_presentations = this.props.presentations.map(function(presentation) {
 				var date = self.getFormattedDate(presentation.meta.created);
 
-			   return <li key={presentation.meta.name} className='presentation-item' >
+				return <li key={presentation.meta.name} className='presentation-item' >
 			   		<Link className='presentation-link' to='managePresentation' params={{id: presentation.meta.id}}>
 				   		<span className='title'>{presentation.meta.title}</span>
 				   		<span className='date-created'>{date}</span>

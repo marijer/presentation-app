@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 var Dispatcher = require('../dispatcher/appDispatcher');
 var UserApi = require('../../api/userApi');

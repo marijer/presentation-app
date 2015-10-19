@@ -8,6 +8,16 @@
   ],
 
   "rules": {
+    "arrow-spacing": 2,
+    "curly": 2,
+    "indent": [2, "tab"],
+    "no-lonely-if": 2,
+    "no-spaced-func": 2,
+    "no-unused-vars": 2,
+    "prefer-const": 2,
+    "quotes": [2, "single"],
+    "space-before-blocks": 2,
+
     "jsx-quotes": [2, "prefer-single"],
     "react/display-name": 0,
     "react/jsx-boolean-value": 2,

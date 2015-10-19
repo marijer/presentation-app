@@ -102,7 +102,7 @@ var ManagePresentationPage = React.createClass({
 		})
 	},
 
-	onSave: function(event) {
+	onSave: function() {
 		if(this.state.presentation.meta.id) {
 			PresentationActions.update(this.state.presentation);
 		} else {
@@ -115,7 +115,7 @@ var ManagePresentationPage = React.createClass({
 
 	},
 
-	onKill: function(event) {
+	onKill: function() {
 		if(confirm('Weet je zeker dat je de presentatie wilt verwijderen?')) {
 			PresentationActions.kill(this.state.presentation);
 			this.transitionTo('overview');

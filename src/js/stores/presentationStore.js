@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 var Dispatcher = require('../dispatcher/appDispatcher');
 var ActionTypes = require('../constants/actionTypes');
@@ -28,8 +28,8 @@ var presentationStore = assign({}, EventEmitter.prototype, {
 	},
 
 	getPresentationById: function (id) {
-		return _.find(_presentations, function(val, key){
-			if(val.meta.id === id){
+		return _.find(_presentations, function(val) {
+			if(val.meta.id === id) {
 				return true;
 			}
 		});
@@ -38,23 +38,23 @@ var presentationStore = assign({}, EventEmitter.prototype, {
 
 Dispatcher.register(function (action) {
 	switch(action.actionType) {
-		case ActionTypes.PRESENTATION_GET: 
-			presentation = action.presentation;
-			presentationStore.emitChange();  
-			break;
-		case ActionTypes.PRESENTATION_CREATE:
-			if(!_presentations){
-				_presentations = [];
-			}
-			_presentations.push(action.presentation);
-			presentationStore.emitChange(); 
-			break;
-		case ActionTypes.PRESENTATION_GET_ALL:
-			_presentations = action.presentations;
-			presentationStore.emitChange(); 
-			break;
-		default: 
-			// no operations
+	case ActionTypes.PRESENTATION_GET: 
+		presentation = action.presentation;
+		presentationStore.emitChange();  
+		break;
+	case ActionTypes.PRESENTATION_CREATE:
+		if(!_presentations) {
+			_presentations = [];
+		}
+		_presentations.push(action.presentation);
+		presentationStore.emitChange(); 
+		break;
+	case ActionTypes.PRESENTATION_GET_ALL:
+		_presentations = action.presentations;
+		presentationStore.emitChange(); 
+		break;
+	default: 
+		// no operations
 	}
 });
 

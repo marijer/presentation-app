@@ -20,17 +20,17 @@ var Header = React.createClass({
 
 	componentDidMount: function() {
 		UserStore.addChangeListener(this._onChange);
-    },
+	},
 
-    _onChange: function() {
+	_onChange: function() {
 		var _user = UserStore.isLoggedIn() ? UserStore.getUser() : null;
 
 		this.setState({
 			user: _user
 		});
-    },
+	},
 
-    logout: function(event) {
+	logout: function(event) {
 		event.preventDefault();
 
 		this.transitionTo('user');
@@ -41,26 +41,26 @@ var Header = React.createClass({
 		var innerContent = '';
 		var backOption = ''
 
-		if (this.state.user){
+		if (this.state.user) {
 			innerContent = <div onClick={this.logout}>{this.state.user.name}</div>
 		}
 
 		 var path = this.getPath();
 		 if(path.indexOf('presentation') > 0 || path.indexOf('add') > 0 || path.indexOf('user') > 0) {
-		 	backOption = <Link to='overview' className='inline-block right1'>
+			backOption = <Link to='overview' className='inline-block right1'>
 			   			<span>terug</span>
 		   			</Link>
 		 }
 
-	return (
-		<div className='header'>
-			<div className='back-option fl-left'>
-				{backOption}
+		return (
+			<div className='header'>
+				<div className='back-option fl-left'>
+					{backOption}
+				</div>
+				<div className='profile fl-right'>
+					{innerContent}
+				</div>
 			</div>
-			<div className='profile fl-right'>
-				{innerContent}
-			</div>
-		</div>
 		)
 	}
 })

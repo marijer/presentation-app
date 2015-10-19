@@ -1,10 +1,10 @@
-"use strict";
+'use strict';
 var _ = require('lodash');
 
 // file is server calls
 
 function getAllUsers() {
-	return JSON.parse(localStorage.getItem("users")); 
+	return JSON.parse(localStorage.getItem('users')); 
 }
 
 function saveUsers(users) {

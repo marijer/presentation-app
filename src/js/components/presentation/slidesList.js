@@ -14,17 +14,18 @@ var SlidesList = React.createClass({
 
 	render: function() {
 		var slides = '';
-		if(this.props.slides){
+		if(this.props.slides) {
 		
 			slides = this.props.slides.map(function(slide, num) {
 				var className = 'slide-tile';
-				if (this.props.currentSlide === num){
+				if (this.props.currentSlide === num) {
 					className += ' active';
 				}
-			   return <li key={num} className={className} onClick={this.handleClick.bind(this, num)}>
-			   			<div className='slide-title'>{slide.title}</div>
-				   		<div className='slide-number'>{num}</div>
-			   		</li>
+				
+				return <li key={num} className={className} onClick={this.handleClick.bind(this, num)}>
+		   			<div className='slide-title'>{slide.title}</div>
+			   		<div className='slide-number'>{num}</div>
+		   		</li>
 			}, this);
 		}
 
