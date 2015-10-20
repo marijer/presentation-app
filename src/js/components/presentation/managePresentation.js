@@ -74,11 +74,11 @@ var ManagePresentationPage = React.createClass({
 	},
 
 	transitionSlide: function(num) {
+		this.transitionTo('managePresentation', { id: this.props.params.id, slide: num });
+
 		this.setState({
 			currentSlide: num,
 		});
-
-		this.transitionTo('managePresentation', { id: this.props.params.id, slide: num });
 	},
 	
 	onChangeTitle: function(event) {
@@ -119,8 +119,8 @@ var ManagePresentationPage = React.createClass({
 
 		num = num === 0 ? 0 : num -1;
 
-		this.updatePresentation(_presentation);
 		this.transitionSlide(num);
+		this.updatePresentation(_presentation);
 	},
 
 	onSave: function() {

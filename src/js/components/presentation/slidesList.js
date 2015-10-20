@@ -9,12 +9,46 @@ var SlidesList = React.createClass({
 		killSlide: React.PropTypes.func.isRequired
 	},
 
-	clickSlide: function(num) {
-		this.props.onClickSlide(num);
+	_checkBounds: function(num) {
+		if(num < 0) {
+			return 0;
+		} else if( num > this.props.slides.length -1) {
+			return this.props.slides.length -1;
+		}
+
+		return num;
 	},
 
-	killSlide: function(num) {
-		this.props.killSlide(num);
+	selectSlide: function(num) {
+		var slide = this._checkBounds(num);
+		this.props.onClickSlide(slide);
+	},
+
+	_handleKeyEvent:function(event) {
+		event.preventDefault();
+		
+		switch(event.keyCode) {
+		case 8: {  // esc
+			this.props.killSlide(this.props.currentSlide);
+			break;
+		}
+		case 38: {  // up
+			this.selectSlide(this.props.currentSlide -1);
+			break;
+		}
+		case 40: { // down
+			this.selectSlide(this.props.currentSlide + 1);
+			break;
+		}
+		}
+	},
+
+	componentWillMount:function() {
+		document.addEventListener('keydown', this._handleKeyEvent, false);
+	},
+
+	componentWillUnmount: function() {
+		document.removeEventListener('keydown', this._handleKeyEvent, false);
 	},
 
 	render: function() {
@@ -27,11 +61,10 @@ var SlidesList = React.createClass({
 				}
 				
 				return <li key={num}>
-							<div className={className} onClick={this.clickSlide.bind(this, num)}>
+							<div className={className} onClick={this.selectSlide.bind(this, num)}>
 					   			<div className='slide-title'>{slide.title}</div>
 						   		<div className='slide-number'>{num + 1}</div>
 					   		</div>
-					   		<a onClick={this.killSlide.bind(this, num)}>x</a>
 				   		</li>
 			}, this);
 		}
