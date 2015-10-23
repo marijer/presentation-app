@@ -133,7 +133,13 @@ var ManagePresentationPage = React.createClass({
 		this.setState({
 			dirty: false
 		});
+	},
 
+	handleChange: function(evt) {
+		debugger;
+		this.setState({
+			t1: evt.target.value
+		});
 	},
 
 	onKill: function() {
@@ -150,14 +156,13 @@ var ManagePresentationPage = React.createClass({
 		return (
 			<div>
 				<PresentationHeader title={presentationTitle} isDirty={this.state.dirty} onChange={this.onChangeTitle} onSave={this.onSave} onKill={this.onKill} />
-				
 				<div className='slide-container'>
 					<div className='slides-list-container inline-block'>
 						<SlideList 	addNewSlide={this.newSlide}
 									killSlide={this.killSlide}
 									currentSlide={this.state.currentSlide} 
 									onClickSlide={this.selectSlide} 
-									slides={this.state.presentation.slides}/> 
+									slides={this.state.presentation.slides} /> 
 					</div>
 					<div className='slide-form-container inline-block top2'>
 						<SlideForm slide={slide} onChange={this.onChangeSlide} />

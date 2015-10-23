@@ -24,9 +24,17 @@ var SlidesList = React.createClass({
 		this.props.onClickSlide(slide);
 	},
 
-	_handleKeyEvent:function(event) {
+	filter: function(event) {
+		var tagName = (event.target || event.srcElement).tagName;
+		return !(tagName == 'INPUT' || tagName == 'SELECT' || tagName == 'TEXTAREA');
+	},
+
+	_handleKeyEvent:function(event) {	
+		if(!this.filter(event)) {
+			return;
+		}
 		event.preventDefault();
-		
+
 		switch(event.keyCode) {
 		case 8: {  // esc
 			this.props.killSlide(this.props.currentSlide);
