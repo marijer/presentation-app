@@ -21,10 +21,15 @@ var PresentationsList = React.createClass({
 				var date = self.getFormattedDate(presentation.meta.created);
 
 				return <li key={presentation.meta.name} className='presentation-item' >
-			   		<Link className='presentation-link' to='managePresentation' params={{id: presentation.meta.id, slide: 0}}>
-				   		<span className='title'>{presentation.meta.title}</span>
-				   		<span className='date-created'>{date}</span>
-			   		</Link>
+					<Link className='presentation-content' to='managePresentation' params={{id: presentation.meta.id, slide: 0}}>
+				   		<div className='presentation-preview'>
+					   		<span className='presentation-slide-title'>{presentation.slides[0].title}</span>
+				   		</div>
+				   		<div className='presentation-meta'>
+				   			<div className='date-created fl-right'>{date}</div>
+				   			<div className='presentation-title fl-left'>{presentation.meta.title}</div>
+					   	</div>	
+				   	</Link>	
 			   </li>
 			});
 		}

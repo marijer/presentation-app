@@ -1,0 +1,59 @@
+.presentations-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.presentation-item {
+    display: flex; 
+    padding: 10px 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.presentation-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.presentation-preview {
+    background-color: #fff;
+    padding: 1em;
+}
+
+.presentation-meta {
+    padding: .5em;
+}
+
+.presentation-title {
+    font-size: .9em;
+    color: #383838;
+    font-weight: bold;
+    width: 80%;
+}
+
+.date-created {
+    text-align: right;
+    font-size: .8em;
+    color: #828080;
+    width: 20%;
+}
+
+@media all and (min-width: 560px) {
+  .presentation-item {
+    width: 50%;
+  }
+}
+
+@media all and (min-width: 780px) {
+  .presentation-item {
+    width: 33.33%;
+  }
+}
+
+@media all and (min-width: 960px) {
+  .presentation-item {
+    width: 25%;
+  }
+}

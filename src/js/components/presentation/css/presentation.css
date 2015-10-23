@@ -6,7 +6,11 @@
 
 .slide-container {
     display: flex;
-     justify-content: space-around;
+    justify-content: space-around;
+}
+
+.presentation-title input {
+    width: 300px;
 }
 
 .slides-list-container {

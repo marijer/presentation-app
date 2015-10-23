@@ -40,7 +40,7 @@ var Overview = React.createClass({
 					</div>
 				</div>
 
-				<div className='main-offset'>
+				<div className=''>
 					<PresentationsList presentations={this.state.presentations} />
 				</div>
 			</div>
