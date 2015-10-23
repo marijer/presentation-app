@@ -23,7 +23,7 @@ var PresentationsList = React.createClass({
 				return <li key={presentation.meta.name} className='presentation-item' >
 					<Link className='presentation-content' to='managePresentation' params={{id: presentation.meta.id, slide: 0}}>
 				   		<div className='presentation-preview'>
-					   		<span className='presentation-slide-title'>{presentation.slides[0].title}</span>
+					   		<span className='presentation-preview-title'>{presentation.slides[0].title}</span>
 				   		</div>
 				   		<div className='presentation-meta'>
 				   			<div className='date-created fl-right'>{date}</div>

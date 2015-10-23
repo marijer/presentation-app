@@ -15,11 +15,20 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+    opacity: .8;
+}
+
+.presentation-content:hover {
+    opacity: 1;
 }
 
 .presentation-preview {
     background-color: #fff;
     padding: 1em;
+}
+
+.presentation-preview-title {
+    color: #000;
 }
 
 .presentation-meta {
@@ -28,8 +37,7 @@
 
 .presentation-title {
     font-size: .9em;
-    color: #383838;
-    font-weight: bold;
+    color: #31824F;
     width: 80%;
 }
 
