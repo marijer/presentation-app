@@ -13,13 +13,18 @@ var Login = React.createClass({
 		Router.Navigation
 	],
 
+	contextTypes: {
+		router: React.PropTypes.func
+	},
+
 	getInitialState: function() {
-		var userName = UserStore.getUser() ? UserStore.getUser().name : undefined,
-			isValidated = userName ? true : false;
+		var loggedIn = UserStore.getUser() ? true : false,
+			userName = loggedIn ? UserStore.getUser().name : '';
 
 		return { 
+			loggedIn: loggedIn,
 			inputValue: userName,
-			isValidated: isValidated
+			isValidated: false
 		};
 	},
 
@@ -29,25 +34,34 @@ var Login = React.createClass({
 
 	validateForm: function(event) {
 		event.preventDefault();
-		this.setState({ isValidated: true });
+		if(this.state.inputValue.length < 3) {
+			this.setState({ isValidated: false });
+		} else {
+			this.setState({ 
+				isValidated: true,
+				loggedIn: true
+			});
 
-		UserActions.login(this.state.inputValue);
-		this.transitionTo('overview');
+			UserActions.login(this.state.inputValue);
+			this.transitionTo('overview');
+		}
 	},
 
 	logout: function() {
 		UserActions.logout();
 		this.setState({
 			inputValue: '',
-			isValidated: false
+			isValidated: false,
+			loggedIn: false
 		})
+
+		this.transitionTo('login');
 	},
 
 	render: function() {
-		var loggedIn = UserStore.getUser() ? true : false;
 		var content;
 
-		if(!loggedIn) {
+		if(!this.state.loggedIn) {
 			content = <LoginForm inputValue={this.state.inputValue}
 						validateForm={this.validateForm}
 						handleChange={this.handleChange}

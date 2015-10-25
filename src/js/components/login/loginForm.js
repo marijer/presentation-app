@@ -3,7 +3,6 @@
 var React = require('react');
 var TextInput = require('../common/textInput.js');
 
-
 var LoginForm = React.createClass({
 	propTypes: {
 		inputValue: React.PropTypes.string,
