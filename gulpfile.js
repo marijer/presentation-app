@@ -9,6 +9,8 @@ var eslint = require('gulp-eslint'); // lint the files
 var source = require('vinyl-source-stream'); // Use conventional text streams to Gulp 
 var reactify = require('reactify');
 
+var karma = require('karma').server;
+
 var config = {
 	port: 8002,
 	devBaseUrl: 'http://localhost',
@@ -34,6 +36,14 @@ gulp.task('connectDist', function () {
     base: config.devBaseUrl,
     livereload: true
   });
+});
+
+gulp.task('test', function(done) {
+    karma.start({
+        configFile: __dirname + '/karma.conf.js'
+    }, function() {
+        done();
+    });
 });
 
 // first run connect before running open, opens server in browser
