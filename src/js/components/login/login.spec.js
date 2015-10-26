@@ -3,6 +3,10 @@ var React = require('react/addons'),
 
 var Login = require('./login');
 
+  beforeEach(function() {
+  	
+  });
+
 describe('Login', function() {
 	it('render without error', function () {
 		var login = TestUtils.renderIntoDocument(

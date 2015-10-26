@@ -65,8 +65,7 @@ var Login = React.createClass({
 			content = <LoginForm inputValue={this.state.inputValue}
 						validateForm={this.validateForm}
 						handleChange={this.handleChange}
-						isValidated={this.state.isValidated}
-						animate={this.state.animate} />
+						isValidated={this.state.isValidated} />
 		} else {
 			content = <LogoutForm 
 							userName={this.state.inputValue} 
