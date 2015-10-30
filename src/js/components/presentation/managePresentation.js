@@ -130,6 +130,8 @@ var ManagePresentationPage = React.createClass({
 			PresentationActions.update(this.state.presentation);
 		} else {
 			PresentationActions.create(this.state.presentation);
+			this.transitionTo('managePresentation', { id: this.state.presentation.meta.id, 
+														slide: this.state.currentSlide });
 		}
 
 		this.setState({
