@@ -5,7 +5,9 @@
 
     - React as viewer
     - React-router as routing system
-    - Flux as from facebook
+    - Flux as data management model
     - Local Storage as database
 
-    - Karma as 
+Testing
+    - Karma as test runner
+    - 
