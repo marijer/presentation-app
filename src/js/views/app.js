@@ -3,7 +3,7 @@ var React = require('react');
 var Router = require('react-router');
 var RouteHandler = require('react-router').RouteHandler;
 var UserStore = require('../stores/userStore');
-var Header = require('../components/common/header');
+var Header = require('../views/common/header');
 
 var PresentationActions = require('../actions/presentationActions');
 
