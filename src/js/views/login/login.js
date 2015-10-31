@@ -23,18 +23,18 @@ var Login = React.createClass({
 
 		return { 
 			loggedIn: loggedIn,
-			inputValue: userName,
+			userName: userName,
 			isValidated: false
 		};
 	},
 
 	handleChange: function(event) {
-		this.setState({ inputValue: event.target.value });
+		this.setState({ userName: event.target.value });
 	},
 
 	validateForm: function(event) {
 		event.preventDefault();
-		if(this.state.inputValue.length < 3) {
+		if(this.state.userName.length < 3) {
 			this.setState({ isValidated: false });
 		} else {
 			this.setState({ 
@@ -42,7 +42,7 @@ var Login = React.createClass({
 				loggedIn: true
 			});
 
-			UserActions.login(this.state.inputValue);
+			UserActions.login(this.state.userName);
 			this.transitionTo('overview');
 		}
 	},
@@ -50,7 +50,7 @@ var Login = React.createClass({
 	logout: function() {
 		UserActions.logout();
 		this.setState({
-			inputValue: '',
+			userName: '',
 			isValidated: false,
 			loggedIn: false
 		})
@@ -62,13 +62,13 @@ var Login = React.createClass({
 		var content;
 
 		if(!this.state.loggedIn) {
-			content = <LoginForm inputValue={this.state.inputValue}
+			content = <LoginForm userName={this.state.userName}
 						validateForm={this.validateForm}
 						handleChange={this.handleChange}
 						isValidated={this.state.isValidated} />
 		} else {
 			content = <LogoutForm 
-							userName={this.state.inputValue} 
+							userName={this.state.userName} 
 							logout={this.logout} />
 		}
 

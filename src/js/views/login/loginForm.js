@@ -5,7 +5,7 @@ var TextInput = require('../common/textInput.js');
 
 var LoginForm = React.createClass({
 	propTypes: {
-		inputValue: React.PropTypes.string,
+		userName: React.PropTypes.string,
 		handleChange: React.PropTypes.func.isRequired,
 		validateForm: React.PropTypes.func.isRequired,
 	},
@@ -19,7 +19,7 @@ var LoginForm = React.createClass({
 					autoFocus='true'
 					placeholder='Wat is je naam?'
 					class='login-input-wrapper'
-					value={this.props.inputValue}
+					value={this.props.userName}
 					onChange={this.props.handleChange} />
 
 					<button type='button' 

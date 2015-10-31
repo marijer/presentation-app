@@ -4,7 +4,7 @@ var React = require('react');
 
 var logoutForm = React.createClass({
 	propTypes: {
-		userName: React.PropTypes.string.isRequired,
+		userName: React.PropTypes.string,
 		logout: React.PropTypes.func.isRequired,
 	},
 
