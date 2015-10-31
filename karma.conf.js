@@ -1,4 +1,5 @@
 'use strict';
+var istanbul = require('browserify-istanbul');
 
 module.exports = function(config) {
     config.set({
@@ -8,7 +9,7 @@ module.exports = function(config) {
 
         // frameworks to use
         // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-        frameworks: ['browserify', 'jasmine', 'source-map-support'],
+        frameworks: ['browserify', 'jasmine'],
 
         // list of files / patterns to load in the browser
         files: [
@@ -18,11 +19,11 @@ module.exports = function(config) {
 
         browserify: {
             debug: true,
-            transform: [ 'reactify' ],
-            paths: ['./node_modules'],
-             files: [
-                'src/js/**/*.spec.js'
-              ],
+            transform: [ 'reactify', istanbul({
+                ignore: ['**/*.spec.js'],
+                defaultIgnore: true
+            })],
+            paths: ['./node_modules']
         },
 
         // preprocess matching files before serving them to the browser
@@ -35,7 +36,12 @@ module.exports = function(config) {
         // test results reporter to use
         // possible values: 'dots', 'progress'
         // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-        reporters: ['progress'],
+        reporters: ['progress', 'coverage'],
+
+        coverageReporter: {
+          'type' : 'html',
+          'dir' : 'coverage/'
+        },
 
         // web server port
         port: 9876,
@@ -57,6 +63,6 @@ module.exports = function(config) {
 
         // Continuous Integration mode
         // if true, Karma captures browsers, runs the tests and exits
-        singleRun: false
+        singleRun: true
     });
 };
