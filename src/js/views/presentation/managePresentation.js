@@ -31,17 +31,28 @@ var ManagePresentationPage = React.createClass({
 	componentWillMount: function() {  //before it is rendered so that the render function is not called twice
 		var presentationId = this.props.params.id;
 		var _currentSlide = Number(this.props.params.slide) || 0;
-
 		if (presentationId) {
 			var _presentation = PresentationStore.getPresentationById(presentationId);
 
 			if (_presentation) {
+				_currentSlide = _presentation.slides[_currentSlide] ? _currentSlide : 0;
+
 				this.setState({
+					currentSlide: _currentSlide,
 					presentation: _presentation,
-					currentSlide: _currentSlide
 				});
+			} else {
+				this.transitionTo('overview'); //actually maybe show a not found text
 			}
 		}
+	},
+
+	componentDidMount: function() {
+		this.updateUrl();
+	},
+
+	componentDidUpdate: function() {
+		this.updateUrl();
 	},
 
 	getInitialState: function() {
@@ -75,11 +86,14 @@ var ManagePresentationPage = React.createClass({
 
 	transitionSlide: function(num) {
 		this.setState({
-			currentSlide: num,
+			currentSlide: num
 		});
+	},
 
+	updateUrl: function(num) {
 		if(this.state.presentation.meta.id) {
-			this.transitionTo('managePresentation', { id: this.props.params.id, slide: num });
+			var slideNumber = num || this.state.currentSlide;
+			this.transitionTo('managePresentation', { id: this.state.presentation.meta.id, slide: slideNumber });
 		}
 	},
 	
